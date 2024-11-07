@@ -13,7 +13,7 @@ public class Main {
     public static int[] dy = new int[] {1,0,-1,0};
 
     public static boolean inBound(int x, int y) {
-        if (x<0 || y<0 || x>=n || y>=n) return false;
+        if (x<0 || y<0 || x>=n || y>=m) return false;
         return true;
     }
 
