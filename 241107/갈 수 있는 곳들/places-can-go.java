@@ -61,14 +61,25 @@ public class Main {
             int x = Integer.parseInt(st.nextToken()) - 1;
             int y = Integer.parseInt(st.nextToken()) - 1;
 
-            if (canGo(x,y)) {
-                currentCnt++;
-                visited[x][y] = true;
-                queue.add(new Point(x,y));
-                bfs();
-            }
-        }
-        System.out.println(currentCnt);
+            visited[x][y] = true;
+            queue.add(new Point(x,y));
+            // bfs();
 
+            // if (canGo(x,y)) {
+            //     currentCnt++;
+            //     visited[x][y] = true;
+            //     queue.add(new Point(x,y));
+            //     bfs();
+            // }
+        }
+
+        bfs();
+        // System.out.println(currentCnt);
+        int ans = 0;
+        for (int i=0;i<n;i++)
+            for (int j=0;j<n;j++)
+                if (visited[i][j]) ans++;
+
+        System.out.println(ans);
     }
 }
