@@ -21,11 +21,9 @@ public class Main {
 
         for (int i=1;i<n;i++) {
             for (int j=1;j<n;j++) {
-                dp[i][j] = Math.min(dp[i-1][j], dp[i][j-1]);
+                dp[i][j] = Math.min(Math.max(dp[i-1][j], dp[i][j-1]), arr[i][j]);
             }
         }
-        if (n>=2)
-            dp[n-1][n-1] = Math.max(dp[n-1][n-2], dp[n-2][n-1]);
     }
     
     public static void main(String[] args) throws IOException {
@@ -42,8 +40,8 @@ public class Main {
         }
 
         initialize();
-        if (n==1) System.out.println(arr[0][0]);
-        else
+        // if (n==1) System.out.println(arr[0][0]);
+        // else
             System.out.println(dp[n-1][n-1]);
 
     }
