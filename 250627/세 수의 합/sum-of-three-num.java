@@ -4,7 +4,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        HashMap <Integer, List<Integer[]> > map = new HashMap<>();
+        HashMap <Integer, Integer> map = new HashMap<>();
         int n = sc.nextInt();
         int k = sc.nextInt();
         int[] arr = new int[n];
@@ -13,33 +13,21 @@ public class Main {
         }
 
         for (int i=0;i<n;i++) {
-            for (int j=i+1;j<n;j++) {
-                int hap = arr[i] + arr[j];
-                Integer[] pos = {i,j};
-                if (map.containsKey(hap))  {
-                    List<Integer[]> list = map.get(hap);
-                    list.add(pos);
-                    map.put(hap, list);
-                }
-                else {
-                    List<Integer[]> list = new ArrayList<>();
-                    list.add(pos);
-                    map.put(hap, list);
-                } 
-            }
+            if (!map.containsKey(arr[i])) map.put(arr[i],1);
+            else map.put(arr[i], map.get(arr[i]) + 1);
         }
 
         int total = 0;
         for (int i=0;i<n;i++) {
-            int remain = k - arr[i];
-            if (map.containsKey(remain)) {
-                List<Integer[]> list = map.get(remain);
-                for (Integer[] check : list) {
-                    if (check[1] >= i) continue;
-                    total+=1;
+            if (map.containsKey(arr[i])) map.put(arr[i], map.get(arr[i])-1);
+            for (int j=0;j<i;j++) {
+                if (map.containsKey(k-arr[i]-arr[j])) {
+                    total += map.get(k-arr[i]-arr[j]);
                 }
             }
         }
+
+        
 
         System.out.println(total);
     }
